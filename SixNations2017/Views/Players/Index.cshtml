@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SixNations2017.Models.Player>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Player Index</h2>
+
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.Label("International Team")
+        </th>
+        <th>
+            @Html.Label("Tries Scored")
+        </th>
+        <th>
+            @Html.Label("Conversion Scored")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Penalties)
+        </th>
+        <th>
+            @Html.Label("Total Points")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position, new { @class = "control-label" })
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InternationalTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TriesScored)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConversionScored)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Penalties)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointsScored)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<p>
+    @Html.ActionLink("Add New Player", "Add")
+</p>
