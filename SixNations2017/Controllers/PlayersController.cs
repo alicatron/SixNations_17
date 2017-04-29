@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using SixNations2017.Models;
+using System.Collections.Generic;
 
 namespace SixNations2017.Controllers
 {
@@ -15,9 +14,53 @@ namespace SixNations2017.Controllers
         private SixNations2017Context db = new SixNations2017Context();
 
         // GET: Players
-        public ActionResult Index()
+
+        public ActionResult Index(string searchString, string teamString, string positionString)
         {
-            return View(db.Players.OrderBy(x => x.InternationalTeam).ToList());
+            var players = from p in db.Players
+                         select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                players = players.Where(x => x.Name.Contains(searchString));
+                return View(players);
+            }
+            
+            else if(!String.IsNullOrEmpty(teamString))
+            {
+                try
+                {
+                    InternationalTeam teamValue = (InternationalTeam)Enum.Parse(typeof(InternationalTeam), teamString);
+                    if (Enum.IsDefined(typeof(InternationalTeam), teamValue) | teamValue.ToString().Contains(","))
+                        players = players.Where(x => x.InternationalTeam.ToString().ToUpper() == teamValue.ToString().ToUpper());
+                    return View(players);
+                }
+                catch (ArgumentException)
+                {
+                    return new HttpStatusCodeResult(404);
+                }    
+            }
+            else if(!String.IsNullOrEmpty(positionString))
+            {
+                try
+                {
+                    Position positionValue = (Position)Enum.Parse(typeof(Position), positionString);
+                    if (Enum.IsDefined(typeof(Position), positionValue) | positionValue.ToString().Contains(","))
+                        players = players.Where(x => x.Position.ToString().ToUpper() == positionValue.ToString().ToUpper());
+                    return View(players);
+                }
+                catch (ArgumentException)
+                {
+                    return new HttpStatusCodeResult(404); //edit exception 
+                }
+            }
+        
+
+            else
+            {
+                return View(db.Players.OrderBy(x=> x.TriesScored).ToList());
+            }
+                     
         }
 
 
@@ -34,13 +77,20 @@ namespace SixNations2017.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add([Bind(Include = "ID,Name,Position,InternationalTeam,TriesScored,ConversionScored,Penalties")] Player player)
         {
-            if (ModelState.IsValid)
+            if (db.Players.Any(x => x.Name == player.Name))
+            {
+                ModelState.AddModelError("Player", "Player already exists");
+            }
+
+
+            else if (ModelState.IsValid)
             {
                 db.Players.Add(player);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+           
             return View(player);
         }
 

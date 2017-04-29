@@ -6,69 +6,95 @@
 
 <h2>Player Index</h2>
 
+<div align = "right">
+<form asp-controller="Players" asp-action="Index">
+    <p>
+       
 
-<table class="table">
+    <p>
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position)
-        </th>
-        <th>
-            @Html.Label("International Team")
-        </th>
-        <th>
-            @Html.Label("Tries Scored")
-        </th>
-        <th>
-            @Html.Label("Conversion Scored")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Penalties)
-        </th>
-        <th>
-            @Html.Label("Total Points")
-        </th>
-        <th></th>
-    </tr>
+        @using (Html.BeginForm("Index", "Players", FormMethod.Get))
+        {
+        <p>
+            Search: @Html.RadioButton("option", "Name")<text>Name</text>@Html.TextBox("SearchString") <br />
+            @Html.RadioButton("option", "Team")<text>Team</text>@Html.TextBox("teamString")
+            @Html.RadioButton("option", "Position")<text>Positon</text>@Html.TextBox("positionString")
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position, new { @class = "control-label" })
-                
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InternationalTeam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TriesScored)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConversionScored)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Penalties)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PointsScored)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            <input type="submit" value="Search" />
+        </p>
+        }
+        </p>
+         
+
+    </p>
+</form>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+
+        <tr class= "success">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.Label("International Team")
+            </th>
+            <th>
+                @Html.Label("Tries Scored")
+            </th>
+            <th>
+                @Html.Label("Conversion Scored")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Penalties)
+            </th>
+            <th>
+                @Html.Label("Total Points")
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InternationalTeam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TriesScored)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConversionScored)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Penalties)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PointsScored)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
 
 
-<p>
-    @Html.ActionLink("Add New Player", "Add")
-</p>
+    <p>
+        @Html.ActionLink("Add New Player", "Add")
+    </p>

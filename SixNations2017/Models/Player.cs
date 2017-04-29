@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel;
 
 namespace SixNations2017.Models
 {
+    
     public enum Position
     {
         Prop, Hooker, Lock,
@@ -38,11 +40,10 @@ namespace SixNations2017.Models
         public string Name { get; set; }
 
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public Position Position { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]  //allows to see the position name when running in json.
+        public Position Position { get; set;}
 
-
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))] //allows to see the position name when running in json.
         public InternationalTeam InternationalTeam { get; set; }
 
         [Display(Name = "Tries Scored")]
@@ -63,7 +64,7 @@ namespace SixNations2017.Models
 
             get
             {
-                const int Conversion = 2;
+                const int Conversion = 2; 
                 const int Try = 5;
                 const int Penalty = 3;
 
