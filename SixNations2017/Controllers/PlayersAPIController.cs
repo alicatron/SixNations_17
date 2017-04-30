@@ -20,36 +20,47 @@ namespace SixNations2017.Controllers
         private SixNations2017Context db = new SixNations2017Context();
 
         //GET: return all players in order by penalties
-        [Route("all")]
+        [Route("players/all")]
         public IHttpActionResult GetPlayers()
         {
             return Ok(db.Players.OrderBy(p => p.Name).ToList());
         }
 
         // GET: returns name and tries scored in tournament.
-        [Route("tries")]
+        [Route("players/tries")]
         public IHttpActionResult GetTries()
         {
             return Ok(db.Players.OrderBy(p => p.TriesScored).Select(m => new { m.Name, m.TriesScored }));
 
         }
 
-        //GET: Players by team keyword
+        //GET: returns player by input name
 
-        /*[Route("team/{team}")]
-        public IHttpActionResult GetTeam(string team)
+        [Route("players/name/{name}")]
+        public IHttpActionResult GetPlayerName(String name)
         {
-            String pattern = @"\b" + team.ToUpper() + @"\b";         // \bKEYWORD\b
-            var results = db.Players.Where(m => Regex.Match(m.InternationalTeam.ToString(), pattern).Success == true).Select(m => new { m.Name, m.InternationalTeam });
-            if (results.Count() == 0)
+            var players = db.Players.Where(p => p.Name.ToUpper() == name.ToUpper());
+            if (players == null)
             {
                 return NotFound();
             }
-            else
-            {
-                return Ok(results);
-            }
-        }*/
+            return Ok(players);
+        }
+
+        //GET: Players who have scored one try or more for their team
+
+         [Route("players/scoredtries/{team}")]
+
+         public IHttpActionResult GetTryScorersbyTeam(string team)
+        {
+            var players = from p in db.Players
+                          select p;
+
+            InternationalTeam teamValue = (InternationalTeam)Enum.Parse(typeof(InternationalTeam), team);
+            if (Enum.IsDefined(typeof(InternationalTeam), teamValue) | teamValue.ToString().Contains(","))
+            players = db.Players.Where(x => x.InternationalTeam.ToString().ToUpper() == teamValue.ToString().ToUpper()).Where(x=>x.TriesScored >= 1);
+            return Ok(players);
+        }
 
         [Route("id/{id}")]
         [ResponseType(typeof(Player))]
