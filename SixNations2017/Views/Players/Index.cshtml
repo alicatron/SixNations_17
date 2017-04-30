@@ -16,9 +16,9 @@
         @using (Html.BeginForm("Index", "Players", FormMethod.Get))
         {
         <p>
-            Search: @Html.RadioButton("option", "Name")<text>Name</text>@Html.TextBox("SearchString") <br />
-            @Html.RadioButton("option", "Team")<text>Team</text>@Html.TextBox("teamString")
-            @Html.RadioButton("option", "Position")<text>Positon</text>@Html.TextBox("positionString")
+            Search: @Html.RadioButton("option", "Name")<text>Name</text>
+            @Html.RadioButton("option", "Team")<text>Team</text>
+            @Html.RadioButton("option", "Position")<text>Positon</text>@Html.TextBox("searchString")
 
             <input type="submit" value="Search" />
         </p>
