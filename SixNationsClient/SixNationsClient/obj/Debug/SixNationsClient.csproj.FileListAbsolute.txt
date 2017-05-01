@@ -1,6 +1,5 @@
 C:\Users\aliso\Desktop\SixNationsClient\SixNationsClient\bin\Debug\SixNationsClient.exe.config
 C:\Users\aliso\Desktop\SixNations_17\SixNationsClient\SixNationsClient\bin\Debug\SixNationsClient.exe.config
-C:\Users\aliso\Desktop\SixNations_17\SixNationsClient\SixNationsClient\obj\Debug\SixNationsClient.csprojResolveAssemblyReference.cache
 C:\Users\aliso\Desktop\SixNations_17\SixNationsClient\SixNationsClient\bin\Debug\SixNationsClient.exe
 C:\Users\aliso\Desktop\SixNations_17\SixNationsClient\SixNationsClient\bin\Debug\SixNationsClient.pdb
 C:\Users\aliso\Desktop\SixNations_17\SixNationsClient\SixNationsClient\bin\Debug\EntityFramework.dll
