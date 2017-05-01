@@ -110,13 +110,12 @@ namespace SixNations2017.Controllers
         }
 
         // POST: Players/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //if the player name & team already exist, user cannot enter details, error displayed
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Position,InternationalTeam,TriesScored,ConversionScored,Penalties")] Player player)
         {
-            if (db.Players.Any(x => x.Name == player.Name & x.InternationalTeam == player.InternationalTeam)) //if the player name & team already exist, user cannot enter details, error displayed
+            if (db.Players.Any(x => x.Name == player.Name & x.InternationalTeam == player.InternationalTeam)) 
             {
                 ModelState.AddModelError("Player", "Player already exists, please enter a different player");
             }

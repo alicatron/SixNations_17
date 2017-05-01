@@ -195,4 +195,3 @@ C:\Users\aliso\Desktop\SixNations_17\SixNations2017\bin\roslyn\System.Xml.XPath.
 C:\Users\aliso\Desktop\SixNations_17\SixNations2017\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Users\aliso\Desktop\SixNations_17\SixNations2017\bin\roslyn\vbc.exe.config
 C:\Users\aliso\Desktop\SixNations_17\SixNations2017\bin\roslyn\vbc.rsp
-C:\Users\aliso\Desktop\SixNations_17\SixNations2017\obj\Debug\SixNations2017.csprojResolveAssemblyReference.cache
