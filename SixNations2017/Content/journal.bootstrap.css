@@ -19,9 +19,6 @@ html {
 }
 body {
   margin: 0;
-    background-size: contain;
-    background-image: url(.../Content/images/rbs-profile.jpg);
-  background-repeat: no-repeat, no-repeat;
 }
 
 article,
