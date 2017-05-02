@@ -33,7 +33,7 @@ namespace SixNations2017.Controllers
                     InternationalTeam teamValue = (InternationalTeam)Enum.Parse(typeof(InternationalTeam), searchString);
                     if (Enum.IsDefined(typeof(InternationalTeam), teamValue) | teamValue.ToString().Contains(","))
                         players = players.Where(x => x.InternationalTeam.ToString().ToUpper() == teamValue.ToString().ToUpper());
-                    return View(players);
+                    return View(players.OrderBy(x=>x.Name));
                 }
                 catch (ArgumentException)
                 {
@@ -47,11 +47,11 @@ namespace SixNations2017.Controllers
                     Position positionValue = (Position)Enum.Parse(typeof(Position), searchString);
                     if (Enum.IsDefined(typeof(Position), positionValue) | positionValue.ToString().Contains(","))
                         players = players.Where(x => x.Position.ToString().ToUpper() == positionValue.ToString().ToUpper());
-                    return View(players);
+                    return View(players.OrderBy(x=>x.Name));
                 }
                 catch (ArgumentException)
                 {
-                    return new HttpStatusCodeResult(404); //edit exception 
+                    return new HttpStatusCodeResult(404);
                 }
             }
         

@@ -52,7 +52,8 @@ namespace SixNations2017.Models
 
         [Display(Name = "Conversions Scored")]
         [Range(0, 100, ErrorMessage = "Please select a number from 0 - 100")]
-        public int ConversionScored { get; set; }
+        public int ConversionScored {get; set;}
+
 
         
         [Range(0, 100, ErrorMessage = "Please select a number from 0 - 100")]
