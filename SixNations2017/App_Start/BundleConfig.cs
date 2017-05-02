@@ -24,7 +24,7 @@ namespace SixNations2017
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/journal.bootstrap.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }
