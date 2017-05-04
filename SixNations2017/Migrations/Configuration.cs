@@ -10,7 +10,7 @@ namespace SixNations2017.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(SixNations2017.Models.SixNations2017Context context)
