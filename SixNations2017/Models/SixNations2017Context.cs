@@ -15,7 +15,7 @@ namespace SixNations2017.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public SixNations2017Context() : base("name=SixNationsDatabase")
+        public SixNations2017Context() : base("name=SixNations2017Context")
         {
         }
 
